@@ -387,7 +387,7 @@ function Home({ isDark }) {
         >
           <HeroTitle>Capturing Life's Beautiful Moments</HeroTitle>
           <HeroSubtitle>Professional Photography Services</HeroSubtitle>
-          <JourneyButton to="/about">Explore More</JourneyButton>
+          <JourneyButton to="/work">Explore More</JourneyButton>
         </HeroContent>
       </HeroSection>
 
