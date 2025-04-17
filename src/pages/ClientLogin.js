@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,10 +8,11 @@ const LoginContainer = styled.div`
   padding: 120px 20px 60px;
   max-width: 400px;
   margin: 0 auto;
+  background: ${props => props.isDark ? '#000000' : '#FFF5EC'};
 `;
 
-const LoginForm = styled.form`
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
+const LoginForm = styled(motion.form)`
+  background: ${props => props.isDark ? '#1A1A1A' : 'white'};
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
@@ -23,32 +25,37 @@ const FormGroup = styled.div`
 const Label = styled.label`
   display: block;
   margin-bottom: 8px;
-  color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  border: 2px solid ${props => props.isDark ? '#3D2E2A' : '#ddd'};
+  border: 2px solid ${props => props.isDark ? '#333333' : '#ddd'};
   border-radius: 8px;
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
 `;
 
-const LoginButton = styled.button`
-  width: 100%;
+const LoginButton = styled(motion.button)`
   background: #FF6B35;
   color: white;
-  padding: 12px;
+  padding: 12px 30px;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
-  transition: all 0.3s ease;
-
+  width: 100%;
+  
   &:hover {
     background: #FF8B55;
   }
+`;
+
+const ErrorMessage = styled.p`
+  color: #ff4444;
+  margin-top: 10px;
+  text-align: center;
 `;
 
 function ClientLogin({ isDark }) {
@@ -58,25 +65,33 @@ function ClientLogin({ isDark }) {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await login(email, password);
-      navigate('/client-portal');
-    } catch (error) {
+    setError('');
+    
+    if (login(email, password)) {
+      navigate('/gallery');
+    } else {
       setError('Invalid email or password');
     }
   };
 
   return (
-    <LoginContainer>
-      <LoginForm isDark={isDark} onSubmit={handleSubmit}>
-        <h2 style={{ color: '#FF6B35', marginBottom: '20px' }}>Client Login</h2>
-        {error && <p style={{ color: 'red', marginBottom: '20px' }}>{error}</p>}
+    <LoginContainer isDark={isDark}>
+      <LoginForm
+        isDark={isDark}
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 style={{color: '#FF6B35', marginBottom: '30px', textAlign: 'center'}}>
+          Client Login
+        </h2>
         
         <FormGroup>
           <Label isDark={isDark}>Email</Label>
-          <Input
+          <Input 
             type="email"
             isDark={isDark}
             value={email}
@@ -87,7 +102,7 @@ function ClientLogin({ isDark }) {
 
         <FormGroup>
           <Label isDark={isDark}>Password</Label>
-          <Input
+          <Input 
             type="password"
             isDark={isDark}
             value={password}
@@ -96,7 +111,15 @@ function ClientLogin({ isDark }) {
           />
         </FormGroup>
 
-        <LoginButton type="submit">Login</LoginButton>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+
+        <LoginButton
+          type="submit"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Login
+        </LoginButton>
       </LoginForm>
     </LoginContainer>
   );

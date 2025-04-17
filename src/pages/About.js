@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const AboutContainer = styled.section`
   padding: 120px 20px 60px;
-  background: ${props => props.isDark ? '#2A1F1D' : '#FFF5EC'};
+  background: ${props => props.isDark ? '#000000' : '#FFF5EC'};
 `;
 
 const AboutContent = styled.div`
@@ -13,14 +13,14 @@ const AboutContent = styled.div`
   text-align: center;
 
   p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     font-size: 18px;
     line-height: 1.8;
     margin-bottom: 30px;
   }
 
   .highlight {
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#FF6B35' : '#FF6B35'};
     font-weight: 600;
   }
 `;
@@ -90,19 +90,20 @@ const TimelineItem = styled.div`
 `;
 
 const TimelineContent = styled.div`
-  background: ${props => props.isDark ? '#3A2F2D' : 'white'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(255, 107, 53, ${props => props.isDark ? '0.3' : '0.1'});
   width: 90%;
 
   h3 {
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#FF6B35' : '#FF6B35'};
     margin-bottom: 10px;
     font-size: 20px;
   }
 
   p {
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     margin-bottom: 0;
     text-align: left;
   }

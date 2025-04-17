@@ -91,7 +91,7 @@ const ItemCategory = styled.span`
 
 const TeamSection = styled.section`
   padding: 80px 20px;
-  background: ${props => props.isDark ? '#2A1F1D' : '#FFF5EC'};
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
 `;
 
 const TeamTitle = styled.h1`
@@ -103,7 +103,7 @@ const TeamTitle = styled.h1`
 
 const TeamSubtitle = styled.p`
   text-align: center;
-  color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+  color: ${props => props.isDark ? '#ffffff' : '#666'};
   font-size: 20px;
   margin-bottom: 40px;
 `;
@@ -119,7 +119,7 @@ const TeamGrid = styled.div`
 
 const PhotographerCard = styled(motion.div)`
   position: relative;
-  background: white;
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
@@ -162,6 +162,7 @@ const HoverOverlay = styled.div`
 const PhotographerInfo = styled.div`
   padding: 20px;
   text-align: center;
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
 
   h3 {
     color: #FF6B35;
@@ -170,14 +171,14 @@ const PhotographerInfo = styled.div`
   }
 
   p {
-    color: #666;
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     font-size: 16px;
     margin-bottom: 15px;
   }
 
   .specialty {
     display: inline-block;
-    background: #FFE6D9;
+    background: ${props => props.isDark ? '#333' : '#FFE6D9'};
     color: #FF6B35;
     padding: 5px 15px;
     border-radius: 20px;
@@ -198,14 +199,65 @@ const PortfolioModal = styled(motion.div)`
 `;
 
 const PortfolioContent = styled(motion.div)`
-  background: white;
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
   border-radius: 20px;
   padding: 30px;
   max-width: 1200px;
   margin: 0 auto;
 `;
 
-// Remove the duplicate PortfolioGrid definition and keep only this one
+const ModalInfo = styled.div`
+  .photographer-info {
+    margin-bottom: 30px;
+  }
+
+  h2, h3 {
+    color: #FF6B35;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  .bio {
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    span {
+      color: #FF6B35;
+      font-weight: 600;
+    }
+
+    p {
+      color: ${props => props.isDark ? '#ffffff' : '#666'};
+    }
+  }
+
+  .awards {
+    h4 {
+      color: #FF6B35;
+      margin-bottom: 10px;
+    }
+    p {
+      color: ${props => props.isDark ? '#ffffff' : '#666'};
+      margin-bottom: 5px;
+    }
+  }
+`;
+
 const PortfolioGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -343,123 +395,79 @@ const CloseButton = styled.button`
   }
 `;
 
-const ModalInfo = styled.div`
-  .photographer-info {
-    margin-bottom: 30px;
-  }
-
-  h2 {
-    color: #FF6B35;
-    font-size: 32px;
-    margin-bottom: 15px;
-  }
-
-  .bio {
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  .credentials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 20px;
-
-    span {
-      color: #FF6B35;
-      font-weight: 600;
-    }
-  }
-
-  .awards {
-    h4 {
-      color: #FF6B35;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #666;
-      margin-bottom: 5px;
-    }
-  }
-`;
-
 function Work({ isDark }) {
   const [selectedPhotographer, setSelectedPhotographer] = useState(null);
 
   return (
-      <TeamSection isDark={isDark}>
-        <TeamTitle>Photographer's Work</TeamTitle>
-        <TeamSubtitle>Meet the artists behind the lens</TeamSubtitle>
-        <TeamGrid>
-          {photographers.map((photographer) => (
-            <PhotographerCard
-              key={photographer.id}
-              onClick={() => setSelectedPhotographer(photographer)}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <img src={photographer.image} alt={photographer.name} />
-              <HoverOverlay className="hover-overlay">
-                View Portfolio
-              </HoverOverlay>
-              <PhotographerInfo>
-                <h3>{photographer.name}</h3>
-                <p>{photographer.bio}</p>
-                <span className="specialty">{photographer.specialty}</span>
-              </PhotographerInfo>
-            </PhotographerCard>
-          ))}
-        </TeamGrid>
+    <TeamSection isDark={isDark}>
+      <TeamTitle>Photographer's Work</TeamTitle>
+      <TeamSubtitle>Meet the artists behind the lens</TeamSubtitle>
+      <TeamGrid>
+        {photographers.map((photographer) => (
+          <PhotographerCard
+            key={photographer.id}
+            onClick={() => setSelectedPhotographer(photographer)}
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+            isDark={isDark}
+          >
+            <img src={photographer.image} alt={photographer.name} />
+            <HoverOverlay className="hover-overlay">
+              View Portfolio
+            </HoverOverlay>
+            <PhotographerInfo isDark={isDark}>
+              <h3>{photographer.name}</h3>
+              <p>{photographer.bio}</p>
+              <span className="specialty">{photographer.specialty}</span>
+            </PhotographerInfo>
+          </PhotographerCard>
+        ))}
+      </TeamGrid>
 
-        <AnimatePresence>
-          {selectedPhotographer && (
-            <PortfolioModal
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <PortfolioContent
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 50, opacity: 0 }}
-              >
-                <CloseButton onClick={() => setSelectedPhotographer(null)}>×</CloseButton>
-                <ModalInfo>
-                  <div className="photographer-info">
-                    <h2>{selectedPhotographer.name}</h2>
-                    <p className="bio">{selectedPhotographer.bio}</p>
-                    <div className="credentials">
-                      <p><span>Specialty:</span> {selectedPhotographer.specialty}</p>
-                      {selectedPhotographer.experience && (
-                        <p><span>Experience:</span> {selectedPhotographer.experience}</p>
-                      )}
-                      {selectedPhotographer.education && (
-                        <p><span>Education:</span> {selectedPhotographer.education}</p>
-                      )}
-                    </div>
-                    {selectedPhotographer.awards && (
-                      <div className="awards">
-                        <h4>Awards & Recognition</h4>
-                        {selectedPhotographer.awards.map((award, index) => (
-                          <p key={index}>{award}</p>
-                        ))}
-                      </div>
+      <AnimatePresence>
+        {selectedPhotographer && (
+          <PortfolioModal
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <PortfolioContent isDark={isDark}>
+              <CloseButton onClick={() => setSelectedPhotographer(null)}>×</CloseButton>
+              <ModalInfo isDark={isDark}>
+                <div className="photographer-info">
+                  <h2>{selectedPhotographer.name}</h2>
+                  <p className="bio">{selectedPhotographer.bio}</p>
+                  <div className="credentials">
+                    <p><span>Specialty:</span> {selectedPhotographer.specialty}</p>
+                    {selectedPhotographer.experience && (
+                      <p><span>Experience:</span> {selectedPhotographer.experience}</p>
+                    )}
+                    {selectedPhotographer.education && (
+                      <p><span>Education:</span> {selectedPhotographer.education}</p>
                     )}
                   </div>
-                  <h3>Portfolio Gallery</h3>
-                  <PortfolioGrid>
-                    {selectedPhotographer.portfolio.map((photo, index) => (
-                      <img key={index} src={photo} alt={`Portfolio ${index + 1}`} />
-                    ))}
-                  </PortfolioGrid>
-                </ModalInfo>
-              </PortfolioContent>
-            </PortfolioModal>
-          )}
-        </AnimatePresence>
-      </TeamSection>
-    );
+                  {selectedPhotographer.awards && (
+                    <div className="awards">
+                      <h4>Awards & Recognition</h4>
+                      {selectedPhotographer.awards.map((award, index) => (
+                        <p key={index}>{award}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <h3>Portfolio Gallery</h3>
+                <PortfolioGrid>
+                  {selectedPhotographer.portfolio.map((photo, index) => (
+                    <img key={index} src={photo} alt={`Portfolio ${index + 1}`} />
+                  ))}
+                </PortfolioGrid>
+              </ModalInfo>
+            </PortfolioContent>
+          </PortfolioModal>
+        )}
+      </AnimatePresence>
+    </TeamSection>
+  );
 }
 
 export default Work;

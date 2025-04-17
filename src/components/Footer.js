@@ -2,10 +2,20 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
-  background: ${props => props.isDark ? '#121212' : '#FFF5EC'};
-  padding: 40px 20px;
-  margin-top: 60px;
-  transition: all 0.3s ease;
+  background: ${props => props.isDark ? '#000000' : 'white'};
+  color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+  padding: 2rem 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const FooterLink = styled.a`
+  color: ${props => props.isDark ? '#FF6B35' : '#333'};
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${props => props.isDark ? '#FFE6D9' : '#FF6B35'};
+  }
 `;
 
 const FooterContent = styled.div`

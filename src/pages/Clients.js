@@ -6,6 +6,7 @@ const ClientsContainer = styled.div`
   padding: 120px 20px 60px;
   max-width: 1200px;
   margin: 0 auto;
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
 `;
 
 const HeroSection = styled.div`
@@ -19,7 +20,7 @@ const HeroSection = styled.div`
   }
 
   p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     font-size: 18px;
     max-width: 800px;
     margin: 0 auto;
@@ -34,7 +35,7 @@ const FeaturesGrid = styled.div`
 `;
 
 const FeatureCard = styled(motion.div)`
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
+  background: ${props => props.isDark ? '#1A1A1A' : 'white'};
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
@@ -47,12 +48,12 @@ const FeatureCard = styled(motion.div)`
   }
 
   h3 {
-    color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+    color: ${props => props.isDark ? '#ffffff' : '#333'};
     margin-bottom: 15px;
   }
 
   p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
   }
 `;
 
@@ -77,9 +78,57 @@ const LoginButton = styled(Link)`
   }
 `;
 
+const ClientContainer = styled.section`
+  padding: 120px 20px;
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
+`;
+
+const ClientGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const ClientCard = styled(motion.div)`
+  background: ${props => props.isDark ? '#1A1A1A' : '#ffffff'};
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.15);
+`;
+
+const ClientImage = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border: 3px solid #FF6B35;
+`;
+
+const ClientName = styled.h3`
+  color: #FF6B35;
+  font-size: 24px;
+  margin-bottom: 10px;
+`;
+
+const ClientRole = styled.p`
+  color: ${props => props.isDark ? '#ffffff' : '#333333'};
+  font-size: 16px;
+  margin-bottom: 15px;
+`;
+
+const ClientTestimonial = styled.p`
+  color: ${props => props.isDark ? '#ffffff' : '#333333'};
+  line-height: 1.6;
+  font-style: italic;
+`;
+
 function Clients({ isDark }) {
   return (
-    <ClientsContainer>
+    <ClientsContainer isDark={isDark}>
       <HeroSection isDark={isDark}>
         <h1>Client Area</h1>
         <p>Access your private photo collections, download high-resolution images, and share your memories with loved ones.</p>

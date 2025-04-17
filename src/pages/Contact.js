@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
+// Styled Components
 const ContactContainer = styled.div`
   padding: 120px 20px 60px;
   max-width: 1200px;
   margin: 0 auto;
-  background: ${props => props.isDark ? '#2A1F1D' : '#FFF5EC'};
+  background: ${props => props.isDark ? '#121212' : '#FFF5EC'};
 `;
 
 const ContactGrid = styled.div`
@@ -28,7 +29,7 @@ const ContactInfo = styled.div`
   }
 
   p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     line-height: 1.8;
     margin-bottom: 20px;
   }
@@ -46,64 +47,17 @@ const ContactMethod = styled.div`
   }
   
   span {
-    color: ${props => props.isDark ? '#FFF1E6' : '#333'};
+    color: ${props => props.isDark ? '#ffffff' : '#333'};
   }
-`;
-
-const ContactForm = styled(motion.form)`
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
 `;
 
 const BookingForm = styled(motion.form)`
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
+  background: ${props => props.isDark ? '#1E1E1E' : 'white'};
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
 `;
 
-// Update the SuccessMessage component
-const SuccessMessage = styled(motion.div)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  z-index: 9999;
-  width: 90%;
-  max-width: 500px;
-
-  h3 {
-    color: #FF6B35;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-
-  p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-`;
-
-// Add an overlay component
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
-`;
-
-// Move all styled components to the top
 const FormGroup = styled.div`
   margin-bottom: 20px;
 `;
@@ -111,40 +65,40 @@ const FormGroup = styled.div`
 const Label = styled.label`
   display: block;
   margin-bottom: 8px;
-  color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  border: 2px solid ${props => props.isDark ? '#3D2E2A' : '#ddd'};
+  border: 2px solid ${props => props.isDark ? '#333333' : '#ddd'};
   border-radius: 8px;
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  color: ${props => props.isDark ? '#FFF1E6' : '#333'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
 `;
 
 const Select = styled.select`
   width: 100%;
   padding: 12px;
-  border: 2px solid ${props => props.isDark ? '#3D2E2A' : '#ddd'};
+  border: 2px solid ${props => props.isDark ? '#333333' : '#ddd'};
   border-radius: 8px;
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  color: ${props => props.isDark ? '#FFF1E6' : '#333'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
   padding: 12px;
-  border: 2px solid ${props => props.isDark ? '#3D2E2A' : '#ddd'};
+  border: 2px solid ${props => props.isDark ? '#333333' : '#ddd'};
   border-radius: 8px;
   height: 120px;
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
-  color: ${props => props.isDark ? '#FFF1E6' : '#333'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
+  color: ${props => props.isDark ? '#ffffff' : '#333'};
   resize: vertical;
 `;
 
 const PackageCard = styled.div`
-  background: ${props => props.isDark ? '#1f1f1f' : 'white'};
+  background: ${props => props.isDark ? '#1E1E1E' : 'white'};
   padding: 25px;
   border-radius: 15px;
   margin-bottom: 30px;
@@ -162,7 +116,7 @@ const PackageCard = styled.div`
   }
 
   li {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     margin-bottom: 8px;
     &:before {
       content: "✓";
@@ -187,7 +141,59 @@ const SubmitButton = styled(motion.button)`
   }
 `;
 
-// Fix photographerOptions array
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+`;
+
+const SuccessMessage = styled(motion.div)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: ${props => props.isDark ? '#1A1A1A' : 'white'};
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 9999;
+  width: 90%;
+  max-width: 500px;
+
+  h3 {
+    color: #FF6B35;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  p {
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    
+    &:hover {
+      color: #FF6B35;
+    }
+  }
+`;
+
 const photographerOptions = [
   { id: 1, name: "Emma Thompson", specialty: "Wedding Photography", availability: "Mon-Sat" },
   { id: 2, name: "David Chen", specialty: "Landscape Photography", availability: "Tue-Sun" },
@@ -238,25 +244,22 @@ function Contact({ isDark }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      eventType: '',
+      date: '',
+      location: '',
+      package: '',
+      photographer: '',
+      message: ''
+    });
     setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        eventType: '',
-        date: '',
-        location: '',
-        package: '',
-        photographer: '',
-        message: ''
-      });
-    }, 12000);  // Changed from 3000 to 12000 ms
   };
 
   return (
-    <ContactContainer>
+    <ContactContainer isDark={isDark}>
       <ContactGrid>
         <ContactInfo isDark={isDark}>
           <h2>Let's Create Something Beautiful</h2>
@@ -438,6 +441,12 @@ function Contact({ isDark }) {
               transition={{ type: "spring", damping: 15 }}
               isDark={isDark}
             >
+              <button 
+                className="close-button" 
+                onClick={() => setShowSuccess(false)}
+              >
+                ×
+              </button>
               <h3>Thank You for Your Interest!</h3>
               <p>Your booking request has been successfully submitted.</p>
               <p>Our team will review your request and get back to you within 24 hours.</p>

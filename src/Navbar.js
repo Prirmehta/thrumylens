@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import LogoComponent from './components/Logo';
 
 const Nav = styled.nav`
-  background: ${props => props.isDark ? '#2A1F1D' : 'white'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
   padding: 1rem;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const NavContainer = styled.div`
@@ -19,13 +20,6 @@ const NavContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Link)`
-  color: #FF6B35;
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: 700;
-`;
-
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
@@ -33,13 +27,13 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  color: ${props => props.isDark ? '#FFE6D9' : '#333'};
+  color: ${props => props.isDark ? '#FF6B35' : '#333'};
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#ffffff' : '#FF6B35'};
   }
 `;
 
@@ -56,7 +50,7 @@ function Navbar({ isDark, setIsDark }) {
   return (
     <Nav isDark={isDark}>
       <NavContainer>
-        <Logo to="/">ThruMyLens</Logo>
+        <LogoComponent isDark={isDark} />
         <NavLinks>
           <NavLink to="/" isDark={isDark}>Home</NavLink>
           <NavLink to="/work" isDark={isDark}>Work</NavLink>

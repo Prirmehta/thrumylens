@@ -46,7 +46,7 @@ const HeroSubtitle = styled.p`
   font-size: 24px;
   font-weight: 300;
   text-shadow: none;
-  color: #000000;
+  color: white;
   margin-top: 10px;
 `;
 
@@ -90,12 +90,12 @@ const StatLabel = styled.p`
 
 const FeaturedWorks = styled.section`
   padding: 80px 20px;
-  background: #FFF5EC;
+  background: ${props => props.isDark ? '#000000' : '#FFF5EC'};
   position: relative;
   
   h2 {
     text-align: center;
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#FF6B35' : '#FF6B35'};
     font-size: 36px;
     margin-bottom: 40px;
   }
@@ -116,8 +116,8 @@ const FeaturedCard = styled(motion.div)`
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(255, 107, 53, 0.1);
-
+  box-shadow: 0 4px 8px rgba(255, 107, 53, ${props => props.isDark ? '0.3' : '0.1'});
+  background: ${props => props.isDark ? '#000000' : '#ffffff'};
   img {
     width: 100%;
     height: 100%;
@@ -228,11 +228,11 @@ const ArrowButton = styled.button`
 
 const ReviewsSection = styled.section`
   padding: 80px 20px;
-  background: ${props => props.isDark ? '#2A1F1D' : '#FFF5EC'};
+  background: ${props => props.isDark ? '#000000' : '#FFF5EC'};
   text-align: center;
   
   h2 {
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#FF6B35' : '#FF6B35'};
     font-size: 36px;
     margin-bottom: 40px;
   }
@@ -242,12 +242,12 @@ const ReviewCard = styled(motion.div)`
   max-width: 800px;
   margin: 0 auto;
   padding: 30px;
-  background: ${props => props.isDark ? '#3D2E2A' : 'white'};
+  background: ${props => props.isDark ? '#000000' : 'white'};
   border-radius: 15px;
-  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.1);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, ${props => props.isDark ? '0.3' : '0.1'});
 
   p {
-    color: ${props => props.isDark ? '#FFE6D9' : '#666'};
+    color: ${props => props.isDark ? '#ffffff' : '#666'};
     font-size: 18px;
     line-height: 1.8;
     font-style: italic;
@@ -255,13 +255,13 @@ const ReviewCard = styled(motion.div)`
   }
 
   h4 {
-    color: #FF6B35;
+    color: ${props => props.isDark ? '#FF6B35' : '#FF6B35'};
     font-size: 20px;
     margin-bottom: 5px;
   }
 
   span {
-    color: ${props => props.isDark ? '#FFE6D9' : '#888'};
+    color: ${props => props.isDark ? '#ffffff' : '#888'};
     font-size: 14px;
   }
 `;
@@ -391,7 +391,7 @@ function Home({ isDark }) {
         </HeroContent>
       </HeroSection>
 
-      <FeaturedWorks>
+      <FeaturedWorks isDark={isDark}>
         <h2>Featured Works</h2>
         <ArrowButton className="prev" onClick={prevPage}>&larr;</ArrowButton>
         <ArrowButton className="next" onClick={nextPage}>&rarr;</ArrowButton>
@@ -402,6 +402,7 @@ function Home({ isDark }) {
               .map((work) => (
                 <FeaturedCard
                   key={work.id}
+                  isDark={isDark}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
